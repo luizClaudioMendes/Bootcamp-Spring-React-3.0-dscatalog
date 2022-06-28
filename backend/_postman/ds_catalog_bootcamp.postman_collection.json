@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "4e053181-f91a-42ec-89c3-05317eecfdc0",
 		"name": "ds_catalog_bootcamp",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13855912"
 	},
 	"item": [
 		{
@@ -14,11 +15,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/categories",
+							"raw": "{{host}}/categories",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"categories"
 							]
