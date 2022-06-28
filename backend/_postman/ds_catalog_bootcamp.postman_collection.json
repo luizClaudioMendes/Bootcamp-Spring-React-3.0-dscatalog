@@ -10,7 +10,7 @@
 			"name": "category",
 			"item": [
 				{
-					"name": "find all",
+					"name": "find all paged default",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -21,6 +21,41 @@
 							],
 							"path": [
 								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find all Paged",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/categories?page=0&linesPerPage=100&direction=DESC&orderBy=id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"categories"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "linesPerPage",
+									"value": "100"
+								},
+								{
+									"key": "direction",
+									"value": "DESC"
+								},
+								{
+									"key": "orderBy",
+									"value": "id"
+								}
 							]
 						}
 					},
