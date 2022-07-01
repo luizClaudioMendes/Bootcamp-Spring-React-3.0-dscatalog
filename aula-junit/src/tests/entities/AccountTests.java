@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import entities.Account;
+import tests.factory.AccountFactory;
 
 public class AccountTests {
 	
@@ -14,7 +15,7 @@ public class AccountTests {
 		
 		// padrao AAA
 		// Arrange - preparar os dados
-		Account acc = new Account(1L, 0.0);
+		Account acc = AccountFactory.createEmptyAccount();
 		
 		// Act
 		acc.deposit(amount);
@@ -28,7 +29,7 @@ public class AccountTests {
 	@Test
 	public void depositShouldDoNothingWhenNegativeAmount() {
 		double expectedValue = 100.0;
-		Account acc = new Account(1L, expectedValue);
+		Account acc = AccountFactory.createAccount(expectedValue);
 		
 		double amount = -200.0;
 		

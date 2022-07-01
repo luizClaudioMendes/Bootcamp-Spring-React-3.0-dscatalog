@@ -1,1 +1,2 @@
 *.class
+aula-junit/src/tests/entities/*.class
