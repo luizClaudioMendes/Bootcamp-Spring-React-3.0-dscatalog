@@ -14,6 +14,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.devsuperior.dscatalog.repositories.ProductRepository;
+import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 
 @ExtendWith(SpringExtension.class)
 public class ProductServiceTests {
@@ -50,5 +51,17 @@ public class ProductServiceTests {
 		Mockito.verify(repository).deleteById(existingId);
 		//verifica se o metod deleteById foi chamado 2 vezes
 		verify(repository, Mockito.times(1)).deleteById(existingId);
+	}
+	
+	@Test
+	public void deleteShouldThrowResourceNotFoundExceptionWhenIdDoesNotExists() {
+		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+			service.delete(nonExistingId);
+		});
+		
+		//verifica se o metodo deleteById foi chamado pelo teste
+		Mockito.verify(repository).deleteById(nonExistingId);
+		//verifica se o metod deleteById foi chamado 2 vezes
+		verify(repository, Mockito.times(1)).deleteById(nonExistingId);
 	}
 }
