@@ -1,5 +1,8 @@
 package com.devsuperior.dscatalog.services;
 
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +36,7 @@ public class ProductServiceTests {
 		Mockito.doNothing().when(repository).deleteById(existingId);
 		
 		//comportamento simulado quando queremos lançar uma exception no mock
-		Mockito.doThrow(EmptyResultDataAccessException.class).when(repository).deleteById(nonExistingId);
+		doThrow(EmptyResultDataAccessException.class).when(repository).deleteById(nonExistingId);
 	}
 	
 	
@@ -46,6 +49,6 @@ public class ProductServiceTests {
 		//verifica se o metodo deleteById foi chamado pelo teste
 		Mockito.verify(repository).deleteById(existingId);
 		//verifica se o metod deleteById foi chamado 2 vezes
-		Mockito.verify(repository, Mockito.times(1)).deleteById(existingId);
+		verify(repository, Mockito.times(1)).deleteById(existingId);
 	}
 }
