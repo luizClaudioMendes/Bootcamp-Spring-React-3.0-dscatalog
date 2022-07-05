@@ -1,0 +1,3 @@
+| @Mock private MyComp myComp;  ou   myComp = Mockito.mock(MyComp.class) 	| usar quando a classe de teste nao carrega o contexto da aplicação. é mais rapido e enxuto.  é usado nas classes com anotaçoes: @ExtendWith                            	|
+|------------------------------------------------------------------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| @MockBean private MyComp myComp;                                       	| usar quando a classe de testa carrega o contexto da aplicaçao e precisa mockar algum bean do sistema.  é usado nas classes com anotaçoes: @WebMvcTest @SpringBootTest 	|
