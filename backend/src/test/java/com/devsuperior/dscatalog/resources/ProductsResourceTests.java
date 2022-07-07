@@ -2,6 +2,8 @@ package com.devsuperior.dscatalog.resources;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -22,6 +24,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.devsuperior.dscatalog.dto.ProductDTO;
 import com.devsuperior.dscatalog.services.ProductService;
+import com.devsuperior.dscatalog.services.exceptions.DatabaseException;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 import com.devsuperior.dscatalog.tests.Factory;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,6 +43,7 @@ public class ProductsResourceTests {
 
 	private long existingId;
 	private long nonExistingId;
+	private long dependantId;
 	private ProductDTO productDTO;
 	private PageImpl<ProductDTO> page;
 
@@ -47,6 +51,8 @@ public class ProductsResourceTests {
 	void setUp() throws Exception {
 		existingId = 1L;
 		nonExistingId = -1L;
+		dependantId = 3L;
+		
 
 		productDTO = Factory.createProductDTO();
 		page = new PageImpl<>(List.of(productDTO));
@@ -58,6 +64,12 @@ public class ProductsResourceTests {
 
 		when(service.update(eq(existingId), any())).thenReturn(productDTO);
 		when(service.update(eq(nonExistingId), any())).thenThrow(ResourceNotFoundException.class);
+	
+		// quando o metodo mockado é void, muda a ordem (do/when)
+		doNothing().when(service).delete(existingId);
+		doThrow(ResourceNotFoundException.class).when(service).delete(nonExistingId);
+		doThrow(DatabaseException.class).when(service).delete(dependantId);
+			
 	}
 
 	@Test
