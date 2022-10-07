@@ -12,6 +12,16 @@
 				{
 					"name": "find all paged default",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -91,7 +101,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjUyMzcxNzUsInVzZXJfbmFtZSI6ImFsZXhAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9PUEVSQVRPUiJdLCJqdGkiOiJjZjI4MDAxOC03ODNlLTRhYTAtODBlOS1jMTk0NDc5N2JhNjEiLCJjbGllbnRfaWQiOiJkc2NhdGFsb2ciLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.vgkeTbCglHOz-3nwS-m2ptvMRzgYHW6u71A_g29gm6w",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -122,6 +132,16 @@
 				{
 					"name": "update category",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -149,6 +169,16 @@
 				{
 					"name": "find by id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -167,6 +197,16 @@
 				{
 					"name": "delete category",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -190,6 +230,16 @@
 				{
 					"name": "find all paged default",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -207,6 +257,16 @@
 				{
 					"name": "find all Paged",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -238,6 +298,16 @@
 				{
 					"name": "new product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -264,6 +334,16 @@
 				{
 					"name": "update products",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -291,6 +371,16 @@
 				{
 					"name": "find by id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -309,6 +399,16 @@
 				{
 					"name": "delete category",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -333,7 +433,14 @@
 					"name": "Users paged",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -371,7 +478,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjUyMzcxNzUsInVzZXJfbmFtZSI6ImFsZXhAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9PUEVSQVRPUiJdLCJqdGkiOiJjZjI4MDAxOC03ODNlLTRhYTAtODBlOS1jMTk0NDc5N2JhNjEiLCJjbGllbnRfaWQiOiJkc2NhdGFsb2ciLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.vgkeTbCglHOz-3nwS-m2ptvMRzgYHW6u71A_g29gm6w",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -412,7 +519,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjUyMzc2NDgsInVzZXJfbmFtZSI6Im1hcmlhQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFUkFUT1IiLCJST0xFX0FETUlOIl0sImp0aSI6IjhmZDNjMTgzLTE0ZWEtNGM4MC05YjM0LTc3ODk2ZDA1Y2JmYiIsImNsaWVudF9pZCI6ImRzY2F0YWxvZyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.zjbShnYR_MATgHTpSXci5ErCKkXmgPwBk2KhsZzpJE8",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -661,7 +768,9 @@
 									"if (responseCode.code >= 200 && responseCode.code < 300) {\r",
 									"    var json = JSON.parse(responseBody);\r",
 									"    postman.setEnvironmentVariable('token', json.access_token);\r",
-									"}"
+									"}\r",
+									"\r",
+									"/* acima codigo que atribui à variavel de ambiente do postman 'token' o valor do campo 'access_token' recebido da requisição */"
 								],
 								"type": "text/javascript"
 							}
@@ -673,12 +782,12 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "dscatalog123",
+									"value": "{{client-secret}}",
 									"type": "string"
 								},
 								{
 									"key": "username",
-									"value": "dscatalog",
+									"value": "{{client-Id}}",
 									"type": "string"
 								},
 								{
@@ -695,12 +804,12 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "alex@gmail.com",
+									"value": "{{username}}",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "123456",
+									"value": "{{password}}",
 									"type": "text"
 								},
 								{
@@ -733,7 +842,9 @@
 									"if (responseCode.code >= 200 && responseCode.code < 300) {\r",
 									"    var json = JSON.parse(responseBody);\r",
 									"    postman.setEnvironmentVariable('token', json.access_token);\r",
-									"}"
+									"}\r",
+									"\r",
+									"/* acima codigo que atribui à variavel de ambiente do postman 'token' o valor do campo 'access_token' recebido da requisição */"
 								],
 								"type": "text/javascript"
 							}
