@@ -24,7 +24,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	
 	@Value("${security.oauth2.client.client-id}")
-	private String clientID;
+	private String clientId;
 	
 	@Value("${security.oauth2.client.client-secret}")
 	private String clientSecret;
@@ -58,7 +58,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		//configura as credenciais da aplicaçao
 		clients
 			.inMemory()
-			.withClient(clientID) // nome da aplicaçao que vai consumir
+			.withClient(clientId) // nome da aplicaçao que vai consumir
 			.secret(passwordEncoder.encode(clientSecret)) // senha da aplicaçao que vai consumir
 			.scopes("read","write")
 			.authorizedGrantTypes("password")
