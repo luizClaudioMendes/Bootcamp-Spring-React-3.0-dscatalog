@@ -24,3 +24,8 @@ incluídas na pasta '_activities' do repositorio
 
 ## banco de dados em memoria H2
 http://localhost:8080/h2-console
+
+## PostgreSQL
+Caso queira usar o servidor do Postgresql via Docker
+
+	docker run -p 5432:5432 --name meu-container-pg12 -e POSTGRES_PASSWORD=1234567 -e POSTGRES_DB=ds_catalog postgres:12-alpine
