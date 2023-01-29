@@ -37,9 +37,14 @@ public class ProductService {
 		// quando fazemos uma consulta JPA é bom fazermos a instanciaçao do objeto category em vez de so passar o id
 		List<Category> categories = (categoryId == 0) ? null : Arrays.asList(categoryRepository.getReferenceById(categoryId));
 		
-		Page<Product> list = repository.find(categories, name,  pageable);
+		Page<Product> page = repository.find(categories, name,  pageable);
+		
+		// to resolve the n + 1 problem just call this search without assigning it to a variable
+		// the categories will be on memory and there will be no need to hibernate to fetch it again (n + 1 problem)
+		repository.findProductsWithCategories(page.getContent()); // to resolve n + 1 problem and fetch products with categories
 
-		return list.map(x -> new ProductDTO(x));
+		// return list.map(x -> new ProductDTO(x)); // nao traz as categorias
+		return page.map(x -> new ProductDTO(x, x.getCategories())); // problema do n + 1 consultas
 		// return list.stream().map(x -> new
 		// ProductDTO(x)).collect(Collectors.toList());
 	}
