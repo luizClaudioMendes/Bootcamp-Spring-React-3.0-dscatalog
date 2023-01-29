@@ -31,11 +31,11 @@ public class ProductService {
 	private CategoryRepository categoryRepository;
 
 	@Transactional(readOnly = true) // readonly nao executa o lock no BD
-	public Page<ProductDTO> findAllPaged(Pageable pageable, Long categoryId) {
+	public Page<ProductDTO> findAllPaged(Pageable pageable, Long categoryId, String name) {
 		// quando fazemos uma consulta JPA é bom fazermos a instanciaçao do objeto category em vez de so passar o id
 		Category category = (categoryId == 0) ? null : categoryRepository.getReferenceById(categoryId);
 		
-		Page<Product> list = repository.find(category, pageable);
+		Page<Product> list = repository.find(category, name,  pageable);
 
 		return list.map(x -> new ProductDTO(x));
 		// return list.stream().map(x -> new

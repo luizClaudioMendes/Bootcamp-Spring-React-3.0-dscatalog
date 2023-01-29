@@ -34,9 +34,10 @@ public class ProductsResource {
 	@GetMapping
 	public ResponseEntity<Page<ProductDTO>> findAll(
 			@RequestParam(value = "categoryId", defaultValue = "0") Long categoryId,
+			@RequestParam(value = "name", defaultValue = "") String name,
 			Pageable pageable
 	) {
-		Page<ProductDTO> list = service.findAllPaged(pageable, categoryId);
+		Page<ProductDTO> list = service.findAllPaged(pageable, categoryId, name.trim());// o trim() impede que o usuario passe por ex 3 espaços em branco e a consulta deixe de funcionar
 		return ResponseEntity.ok().body(list);
 	}
 

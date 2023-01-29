@@ -308,6 +308,46 @@
 					"response": []
 				},
 				{
+					"name": "Products paged With category and name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/products?page=0&size=12&sort=name,asc&categoryId=3&name=PC%20gamer",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "12"
+								},
+								{
+									"key": "sort",
+									"value": "name,asc"
+								},
+								{
+									"key": "categoryId",
+									"value": "3"
+								},
+								{
+									"key": "name",
+									"value": "PC%20gamer",
+									"description": "usar a function do javascript encodeURIComponent(\"PC gamer\") para conseguir passar caracteres e espaços"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Product by id",
 					"request": {
 						"method": "GET",
