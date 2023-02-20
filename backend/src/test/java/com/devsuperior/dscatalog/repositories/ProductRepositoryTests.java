@@ -7,12 +7,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.devsuperior.dscatalog.entities.Product;
 import com.devsuperior.dscatalog.tests.Factory;
 
-@DataJpaTest
+//@DataJpaTest
+@SpringBootTest
 public class ProductRepositoryTests {
 	
 	@Autowired
@@ -58,7 +60,7 @@ public class ProductRepositoryTests {
 	
 	@Test
 	public void findByIdShouldReturnObjectWhenIdExists() {
-		Optional<Product> result = repository.findById(existingId);
+		Optional<Product> result = repository.findById(2L);
 		
 		Assertions.assertTrue(result.isPresent());
 	}

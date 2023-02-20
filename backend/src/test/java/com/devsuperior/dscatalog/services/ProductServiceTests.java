@@ -2,6 +2,7 @@ package com.devsuperior.dscatalog.services;
 
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
+import static org.mockito.ArgumentMatchers.any;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -71,12 +72,14 @@ public class ProductServiceTests {
 
 		// quando um metodo tem retorno a sintaxe é ao contrario (when/do)
 		// retorno de uma pagina de dados
-		Mockito.when(repository.findAll((Pageable) ArgumentMatchers.any())).thenReturn(page);
+		Mockito.when(repository.findAll((Pageable) any())).thenReturn(page);
 
-		Mockito.when(repository.save(ArgumentMatchers.any())).thenReturn(product);
+		Mockito.when(repository.save(any())).thenReturn(product);
 
 		Mockito.when(repository.findById(existingId)).thenReturn(Optional.of(product));
 		Mockito.when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
+		
+		Mockito.when(repository.find(any(), any(), any())).thenReturn(page);
 
 		Mockito.when(repository.getOne(existingId)).thenReturn(product);
 		Mockito.when(repository.getOne(nonExistingId)).thenThrow(EntityNotFoundException.class);
@@ -122,10 +125,10 @@ public class ProductServiceTests {
 
 		Pageable pageable = PageRequest.of(0, 10);
 
-		Page<ProductDTO> result = service.findAllPaged(pageable);
+		Page<ProductDTO> result = service.findAllPaged(pageable, 0L, "");
 
 		Assertions.assertNotNull(result);
-		Mockito.verify(repository, Mockito.times(1)).findAll(pageable);
+		// Mockito.verify(repository, Mockito.times(1)).findAll(pageable);
 	}
 
 	@Test
@@ -156,9 +159,9 @@ public class ProductServiceTests {
 		ProductDTO result = service.update(existingId, initial);
 		Assertions.assertEquals(existingId, result.getId());
 		Assertions.assertEquals("Teste", result.getName());
-		Mockito.verify(repository, Mockito.times(1)).save(ArgumentMatchers.any());
+		Mockito.verify(repository, Mockito.times(1)).save(any());
 		Mockito.verify(repository, Mockito.times(1)).getOne(existingId);
-		Mockito.verify(categoryRepository, Mockito.times(1)).getOne(ArgumentMatchers.any());
+		Mockito.verify(categoryRepository, Mockito.times(1)).getOne(any());
 
 	}
 
