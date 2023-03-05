@@ -44,3 +44,15 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## commands (luiz)
+...
+
+7-28
+React Router DOM
+yarn add react-router-dom@5 @types/react-router-dom
+https://tipscode.com.br/react-router-versao-5-guia-completo
+
+
+yarn add react-router-dom
