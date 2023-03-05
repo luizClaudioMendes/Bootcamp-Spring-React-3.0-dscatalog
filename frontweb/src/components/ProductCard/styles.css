@@ -8,14 +8,14 @@
   border-bottom: 1px solid #e1e1e1;
 }
 
+.card-top-container img {
+    width: 158px;
+    height: 158px;
+  }
+
 .card-bottom-container {
   text-align: left;
   padding: 15px 20px 30px 20px;
-}
-
-.card-bottom-container img {
-  width: 158px;
-  height: 158px;
 }
 
 .card-bottom-container h6 {
