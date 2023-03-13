@@ -56,3 +56,5 @@ https://tipscode.com.br/react-router-versao-5-guia-completo
 
 
 yarn add react-router-dom
+
+yarn add react-content-loader
