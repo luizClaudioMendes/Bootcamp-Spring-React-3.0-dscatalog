@@ -2,33 +2,29 @@ import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
 import axios from 'axios';
 import ProductPrice from 'components/ProductPrice';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Product } from 'types/product';
 import { BASE_URL } from 'util/requests';
 import './styles.css';
 
-const ProductDetails = () => {
-  /* 
-  // forma incorreta!!!
-  let product : Product;
+type UrlParams = {
+  productId: string;
+}
 
-  // forma incorreta!!!
-  axios.get(BASE_URL + "/products/2")// assincrona
-  // .then aguarda a resposta
-  .then(response => {
-    console.log(response.data)
-  });  
-  */
+const ProductDetails = () => {
+
+  const { productId } = useParams<UrlParams>(); // captura os parametros da url
 
   const [product, setProduct] = useState<Product>();// React HOOK
 
   useEffect(() => {
     axios
-      .get(BASE_URL + '/products/1') // assincrona
+      .get(`${BASE_URL}/products/${productId}`) // assincrona
       .then((response) => {
         setProduct(response.data);
       });
-  }, []); // react HOOK
+  }, [productId]); // react HOOK
+  // o useEffect monitora a lista do [productId] e caso algum desses objetos mude, ele atualiza o componente
 
   return (
     <div className="product-detail-container">
