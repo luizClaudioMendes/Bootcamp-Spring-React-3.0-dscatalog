@@ -1,23 +1,36 @@
 import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
 import axios from 'axios';
 import ProductPrice from 'components/ProductPrice';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { Product } from 'types/product';
 import { BASE_URL } from 'util/requests';
+import ProductDetailsLoader from './ProductDetailsLoader';
+import ProductInfoLoader from './ProductInfoLoader';
 import './styles.css';
 
-const ProductDetails = () => {
-  /* 
-  // forma incorreta!!!
-  let product : Product;
+type UrlParams = {
+  productId: string;
+};
 
-  // forma incorreta!!!
-  axios.get(BASE_URL + "/products/2")// assincrona
-  // .then aguarda a resposta
-  .then(response => {
-    console.log(response.data)
-  });  
-  */
+const ProductDetails = () => {
+  const { productId } = useParams<UrlParams>(); // captura os parametros da url
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [product, setProduct] = useState<Product>(); // React HOOK
+
+  useEffect(() => {
+    setIsLoading(true);
+    axios
+      .get(`${BASE_URL}/products/${productId}`) // assincrona
+      .then((response) => {
+        setProduct(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [productId]); // react HOOK
+  // o useEffect monitora a lista do [productId] e caso algum desses objetos mude, ele atualiza o componente
 
   return (
     <div className="product-detail-container">
@@ -30,25 +43,29 @@ const ProductDetails = () => {
         </Link>
         <div className="row">
           <div className="col-xl-6">
-            <div className="img-container">
-              <img
-                src="https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/2-big.jpg"
-                alt="nome do produto"
-              />
-            </div>
-            <div className="name-price-container">
-              <h1>NOME DO PRODUTO</h1>
-              <ProductPrice price={2345.67} />
-            </div>
+            {isLoading ? (
+              <ProductInfoLoader />
+            ) : (
+              <>
+                <div className="img-container">
+                  <img src={product?.imgUrl} alt={product?.name} />
+                </div>
+                <div className="name-price-container">
+                  <h1>{product?.name}</h1>
+                  {product && <ProductPrice price={product?.price} />}
+                </div>
+              </>
+            )}
           </div>
           <div className="col-xl-6">
-            <div className="description-container">
-              <h2>DESCRICAO DO PRODUTO</h2>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum,
-                ab.
-              </p>
-            </div>
+            {isLoading ? (
+              <ProductDetailsLoader />
+            ) : (
+              <div className="description-container">
+                <h2>DESCRICAO DO PRODUTO</h2>
+                <p>{product?.description}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
