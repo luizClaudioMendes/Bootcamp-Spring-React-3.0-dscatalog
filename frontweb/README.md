@@ -59,3 +59,6 @@ yarn add react-router-dom
 
 yarn add react-content-loader
 https://skeletonreact.com/
+
+yarn add react-hook-form
+https://react-hook-form.com/get-started
