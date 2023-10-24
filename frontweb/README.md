@@ -65,3 +65,6 @@ https://react-hook-form.com/get-started
 
 // Query string
 yarn add qs
+
+// bootstrap
+https://getbootstrap.com/
