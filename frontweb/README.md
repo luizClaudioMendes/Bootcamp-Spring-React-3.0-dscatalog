@@ -62,3 +62,6 @@ https://skeletonreact.com/
 
 yarn add react-hook-form
 https://react-hook-form.com/get-started
+
+// Query string
+yarn add qs
