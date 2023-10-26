@@ -68,3 +68,6 @@ yarn add qs
 
 // bootstrap
 https://getbootstrap.com/
+
+// JWT decoder
+yarn add jwt-decode @types/jwt-decode

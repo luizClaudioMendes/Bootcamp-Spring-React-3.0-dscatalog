@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 import history from './history';
+import jwtDecode from 'jwt-decode';
 
 type LoginResponse = {
   access_token: string;
@@ -10,6 +11,14 @@ type LoginResponse = {
   userFirstName: string;
   userId: number;
 };
+
+type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN'
+
+type TokenData = {
+  exp: number;
+  user_name: string;
+  authorities: Role[];
+}
 
 export const BASE_URL =
   process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:80';
@@ -85,3 +94,14 @@ axios.interceptors.response.use(function (response) {
   }
   return Promise.reject(error);
 });
+
+export const getTokenData = () : TokenData | undefined => {
+  const loginResponse = getAuthData();
+
+  try {
+    return jwtDecode(loginResponse.access_token) as TokenData;
+  } 
+  catch (error) {
+    return undefined;
+  }
+}
