@@ -9,13 +9,15 @@ type Props = {
 
 
 const PrivateRoute = ({ children, path }: Props) => {
+  console.log(isAuthenticated())
+  console.log(children)
 
 
   return (
     <Route
       path={path}
       render={() =>
-        isAuthenticated() ? <>children</> : <Redirect to="/admin/auth/login" />
+        isAuthenticated() ? <>{children}</> : <Redirect to="/admin/auth/login" />
       }
     />
   );
