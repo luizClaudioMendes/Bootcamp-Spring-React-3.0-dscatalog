@@ -9,10 +9,6 @@ type Props = {
 
 
 const PrivateRoute = ({ children, path }: Props) => {
-  console.log(isAuthenticated())
-  console.log(children)
-
-
   return (
     <Route
       path={path}
