@@ -1,29 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 import history from './history';
-import jwtDecode from 'jwt-decode';
-
-type LoginResponse = {
-  access_token: string;
-  token_type: string;
-  expires_in: number;
-  scope: string;
-  userFirstName: string;
-  userId: number;
-};
-
-export type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN'
-
-export type TokenData = {
-  exp: number;
-  user_name: string;
-  authorities: Role[];
-}
+import { getAuthData } from './storage';
 
 export const BASE_URL =
   process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:80';
 
-const tokenKey = 'authData';
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'dscatalog';
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? 'dscatalog123';
 
@@ -59,83 +41,35 @@ export const requestBackend = (config: AxiosRequestConfig) => {
         Authorization: 'Bearer ' + getAuthData().access_token,
       }
     : config.headers;
-    
+
   return axios({ ...config, baseURL: BASE_URL, headers });
 };
 
-export const saveAuthData = (obj: LoginResponse) => {
-  localStorage.setItem(tokenKey, JSON.stringify(obj));
-};
-
-export const getAuthData = () => {
-  const str = localStorage.getItem(tokenKey) ?? '{}';
-  return JSON.parse(str) as LoginResponse;
-};
-
-export const removeAuthData = () => {
-  localStorage.removeItem(tokenKey);
-}
-
 // Add a request interceptor
-axios.interceptors.request.use(function (config) {
-  // Do something before request is sent
-  return config;
-}, function (error) {
-  // Do something with request error
-  return Promise.reject(error);
-});
+axios.interceptors.request.use(
+  function (config) {
+    // Do something before request is sent
+    return config;
+  },
+  function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  }
+);
 
 // Add a response interceptor
-axios.interceptors.response.use(function (response) {
-  // Any status code that lie within the range of 2xx cause this function to trigger
-  // Do something with response data
-  return response;
-}, function (error) {
-  // Any status codes that falls outside the range of 2xx cause this function to trigger
-  // Do something with response error
-  if (error.response.status === 401 ) {
-    history.push('/admin/auth')
-  }
-  return Promise.reject(error);
-});
-
-export const getTokenData = () : TokenData | undefined => {
-  const loginResponse = getAuthData();
-
-  try {
-    return jwtDecode(loginResponse.access_token) as TokenData;
-  } 
-  catch (error) {
-    return undefined;
-  }
-}
-
-export const isAuthenticated = () : boolean => {
-  const tokenData = getTokenData();
-  
-  return (tokenData && tokenData.exp * 1000 > Date.now()) ? true : false;
-}
-
-export const hasAnyRoles = (roles: Role[]) : boolean => {
-  if (roles.length === 0) {
-    return true;
-  }
-
-  const tokenData = getTokenData();
-
-  // forma basica para resolver
-  /* if (tokenData !== undefined) {
-    for (var i = 0; i < roles.length; i++) {
-      if(tokenData.authorities.includes(roles[i])) {
-        return true;
-      }
+axios.interceptors.response.use(
+  function (response) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+    return response;
+  },
+  function (error) {
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Do something with response error
+    if (error.response.status === 401) {
+      history.push('/admin/auth');
     }
-  } */
-
-  // forma high order do javascript para resolver
-  if (tokenData !== undefined) {
-    return roles.some(roles => tokenData.authorities.includes(roles))
+    return Promise.reject(error);
   }
-
-  return false;
-} 
+);
