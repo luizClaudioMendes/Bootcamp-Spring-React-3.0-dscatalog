@@ -1,4 +1,4 @@
-import ProductCrudCard from 'components/ProductCrudCard';
+import ProductCrudCard from 'pages/Admin/Products/ProductCrudCard';
 import './styles.css';
 import { Link } from 'react-router-dom';
 
@@ -17,12 +17,16 @@ const List = () => {
         id: 2,
         name: 'Eletrônicos',
       },
+      {
+        id: 1,
+        name: 'Computadores',
+      },
     ],
   };
 
   return (
     <>
-      <div className='product-crud-bar-container'>
+      <div className="product-crud-bar-container">
         <Link to="/admin/products/create">
           <button className="btn btn-primary text-white btn-crud-add">
             ADICIONAR
@@ -31,23 +35,23 @@ const List = () => {
         <div className="base-card product-filter-container">search bar</div>
       </div>
 
-<div className='row'>
-    {/* row é do bootstrap breakpoints */}
-    <div className="col-sm-6 col-md-12">
-        {/* sm é 576 do bootstrap */}
-        {/* mostra um card por linha ate o 576px */}
-        {/* depois mostra 2 cards 12/6 */}
-        {/* col-md-12 é a partir do 768px volta a ter 1  */}
-        {/* 12/12 = 1 */}
-      <ProductCrudCard product={product} />
-    </div>
-    <div className="col-sm-6 col-md-12">
-      <ProductCrudCard product={product} />
-    </div>
-    <div className="col-sm-6 col-md-12">
-      <ProductCrudCard product={product} />
-    </div>
-</div>
+      <div className="row">
+        {/* row é do bootstrap breakpoints */}
+        <div className="col-sm-6 col-md-12">
+          {/* sm é 576 do bootstrap */}
+          {/* mostra um card por linha ate o 576px */}
+          {/* depois mostra 2 cards 12/6 */}
+          {/* col-md-12 é a partir do 768px volta a ter 1  */}
+          {/* 12/12 = 1 */}
+          <ProductCrudCard product={product} />
+        </div>
+        <div className="col-sm-6 col-md-12">
+          <ProductCrudCard product={product} />
+        </div>
+        <div className="col-sm-6 col-md-12">
+          <ProductCrudCard product={product} />
+        </div>
+      </div>
     </>
   );
 };
