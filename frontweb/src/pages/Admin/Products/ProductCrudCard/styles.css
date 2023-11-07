@@ -1,3 +1,6 @@
+/* todos estes elementos foram feitos para ficarem acima uns dos 
+outros em uma tela de 320px */
+
 .product-crud-card {
   margin-bottom: 30px;
   padding-bottom: 20px;
@@ -36,6 +39,7 @@
 .product-crud-card-buttons-container {
   padding: 0 20px;
   display: flex;
+  justify-content: space-between;
 }
 
 .product-crud-card-button {
@@ -49,4 +53,51 @@
 
 .product-crud-card-button-first {
   margin-right: 10px;
+}
+
+/* agora estes elementos ficarao um ao lado do outro */
+
+@media(min-width: 768px) {
+  .product-crud-card {
+    /* so com esta linha os divs ja ficaram alinhados um ao lado do outro */
+    display: flex; 
+    justify-content: space-between;
+    padding-bottom: 0px;
+  }
+
+  .product-crud-card-buttons-container {
+    /* coloca os botoes um em cima do outro */
+    flex-direction: column-reverse;
+    /* coloca os botoes no centro da div (vertical) */
+    justify-content: center;
+  }
+
+  .product-crud-card-button-first {
+    margin-right: 0px;
+    margin-top: 22px;
+  }
+
+  .product-crud-card-button {
+    width: 140px;
+  }
+
+  .product-crud-card-description {
+    /* faz o elemento ocupar toda a largura */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .product-crud-card-top-container {
+    border-right: 1px solid #e1e1e1;
+    border-bottom: 0px;
+  }
+}
+
+
+@media(min-width: 992px) {
+  .product-crud-card-button {
+    width: 220px;
+  }
 }
