@@ -1,9 +1,40 @@
 import './styles.css';
 import '@popperjs/core';
 import 'bootstrap/js/src/collapse';
+import { useContext, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import history from 'util/history';
+import { AuthContext } from 'AuthContext';
+import { getTokenData, isAuthenticated } from 'util/auth';
+import { removeAuthData } from 'util/storage';
 
 const Navbar = () => {
+  const {authContextData, setAuthContextData} = useContext(
+    AuthContext
+  );
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      setAuthContextData({
+        authenticated: isAuthenticated(),
+        tokenData: getTokenData(),
+      });
+    } else {
+      setAuthContextData({
+        authenticated: false,
+      });
+    }
+  }, [setAuthContextData]);
+
+  const handleLogoutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault(); // nao executa o chamado do link e sim o processamento abaixo
+    removeAuthData();
+    setAuthContextData({
+      authenticated: false,
+    });
+    history.replace('/');
+  };
+
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">
       <div className="container-fluid">
@@ -38,6 +69,18 @@ const Navbar = () => {
               </NavLink>
             </li>
           </ul>
+        </div>
+        <div className='nav-login-logout'>
+          {authContextData.authenticated ? (
+            <>
+              <span className='nav-username'>{authContextData.tokenData?.user_name}</span>
+              <a href="#logout" onClick={handleLogoutClick}>
+                LOGOUT
+              </a>
+            </>
+          ) : (
+            <Link to="/admin/auth">LOGIN</Link>
+          )}
         </div>
       </div>
     </nav>

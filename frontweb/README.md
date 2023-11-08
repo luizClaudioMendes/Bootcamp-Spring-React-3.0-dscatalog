@@ -59,3 +59,15 @@ yarn add react-router-dom
 
 yarn add react-content-loader
 https://skeletonreact.com/
+
+yarn add react-hook-form
+https://react-hook-form.com/get-started
+
+// Query string
+yarn add qs
+
+// bootstrap
+https://getbootstrap.com/
+
+// JWT decoder
+yarn add jwt-decode @types/jwt-decode
